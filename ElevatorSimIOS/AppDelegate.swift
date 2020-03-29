@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+//Defines entry point for the app, provides a place to state transitions within the app
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
