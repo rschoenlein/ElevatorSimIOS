@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  Elevator.swift
 //  ElevatorSimIOS
 //
-//  Created by Ryan Schoenlein on 3/21/20.
+//  Created by Ryan Schoenlein on 4/2/20.
 //  Copyright © 2020 Ryan Schoenlein. All rights reserved.
 //
 
