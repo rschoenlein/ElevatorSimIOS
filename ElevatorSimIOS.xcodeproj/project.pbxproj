@@ -15,8 +15,11 @@
 		11785C392421710200907B4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11785C372421710200907B4A /* LaunchScreen.storyboard */; };
 		11785C442421710200907B4A /* ElevatorSimIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11785C432421710200907B4A /* ElevatorSimIOSTests.swift */; };
 		11785C4F2421710200907B4A /* ElevatorSimIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11785C4E2421710200907B4A /* ElevatorSimIOSUITests.swift */; };
-		11785C612427193400907B4A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11785C602427193400907B4A /* File.swift */; };
 		11785C632427195400907B4A /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11785C622427195400907B4A /* SimulationViewController.swift */; };
+		11A45B382436E04000A1D046 /* Elevator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A45B372436E04000A1D046 /* Elevator.swift */; };
+		11A45B3A2436E09700A1D046 /* ElevatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A45B392436E09700A1D046 /* ElevatorController.swift */; };
+		11A45B3C2436E0A200A1D046 /* Door.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A45B3B2436E0A200A1D046 /* Door.swift */; };
+		11A45B3E2436E0B300A1D046 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A45B3D2436E0B300A1D046 /* Button.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +54,11 @@
 		11785C4A2421710200907B4A /* ElevatorSimIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElevatorSimIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11785C4E2421710200907B4A /* ElevatorSimIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevatorSimIOSUITests.swift; sourceTree = "<group>"; };
 		11785C502421710200907B4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		11785C602427193400907B4A /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		11785C622427195400907B4A /* SimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
+		11A45B372436E04000A1D046 /* Elevator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elevator.swift; sourceTree = "<group>"; };
+		11A45B392436E09700A1D046 /* ElevatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevatorController.swift; sourceTree = "<group>"; };
+		11A45B3B2436E0A200A1D046 /* Door.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Door.swift; sourceTree = "<group>"; };
+		11A45B3D2436E0B300A1D046 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +89,6 @@
 		11785C1F2421710000907B4A = {
 			isa = PBXGroup;
 			children = (
-				11785C602427193400907B4A /* File.swift */,
 				11785C2A2421710000907B4A /* ElevatorSimIOS */,
 				11785C422421710200907B4A /* ElevatorSimIOSTests */,
 				11785C4D2421710200907B4A /* ElevatorSimIOSUITests */,
@@ -106,6 +111,10 @@
 			children = (
 				11785C2B2421710000907B4A /* AppDelegate.swift */,
 				11785C622427195400907B4A /* SimulationViewController.swift */,
+				11A45B372436E04000A1D046 /* Elevator.swift */,
+				11A45B392436E09700A1D046 /* ElevatorController.swift */,
+				11A45B3B2436E0A200A1D046 /* Door.swift */,
+				11A45B3D2436E0B300A1D046 /* Button.swift */,
 				11785C2D2421710000907B4A /* MenuViewController.swift */,
 				11785C2F2421710000907B4A /* Main.storyboard */,
 				11785C352421710200907B4A /* Assets.xcassets */,
@@ -266,10 +275,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				11785C342421710000907B4A /* ElevatorSimIOS.xcdatamodeld in Sources */,
+				11A45B3C2436E0A200A1D046 /* Door.swift in Sources */,
 				11785C632427195400907B4A /* SimulationViewController.swift in Sources */,
-				11785C612427193400907B4A /* File.swift in Sources */,
+				11A45B3A2436E09700A1D046 /* ElevatorController.swift in Sources */,
 				11785C2E2421710000907B4A /* MenuViewController.swift in Sources */,
 				11785C2C2421710000907B4A /* AppDelegate.swift in Sources */,
+				11A45B3E2436E0B300A1D046 /* Button.swift in Sources */,
+				11A45B382436E04000A1D046 /* Elevator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

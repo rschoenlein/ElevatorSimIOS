@@ -13,15 +13,14 @@ class MenuViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
     @IBOutlet weak var simulateButton: UIButton!
-    @IBOutlet weak var numElevators: UITextField!
-    var delegate: SimulationDelegate?
+    @IBOutlet weak var elevatorsField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         //disable button
-        self.numElevators.delegate = self
+        self.elevatorsField.delegate = self
         self.simulateButton.isUserInteractionEnabled = false
         self.simulateButton.alpha = 0.5
     }
@@ -30,10 +29,10 @@ class MenuViewController: UIViewController, UITextFieldDelegate {
     
     //go to simulation view
     @IBAction func simulateButtonPressed(_ sender: Any) {
-        let simView: SimulationViewController = SimulationViewController()
-        delegate?.setNumElevators(num: numElevators.text!)
+        print("Text found: ", self.elevatorsField.text!)
         
-        self.present(simView, animated: true, completion: nil)
+        //TODO
+        performSegue(withIdentifier: "toSimView", sender: self)
     }
     
     //responds to any input in a text field
@@ -66,5 +65,10 @@ class MenuViewController: UIViewController, UITextFieldDelegate {
         // inverse characters were present to be eliminated, the input is valid
         // and the statement returns true; else it returns false
         return string == filtered
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let simView = segue.destination as! SimulationViewController
+        simView.numElevators = self.elevatorsField.text!
     }
 }
