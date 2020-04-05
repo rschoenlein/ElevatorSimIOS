@@ -13,17 +13,15 @@ class SimulationViewController: UIViewController {
     
     //MARK: Properties
     var numElevators = ""
-    var elevators: [Elevator] = []
+    var elevatorController: ElevatorController?
     var floorButtons: [FloorButton] = []
-    var spacing = 70
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //populate array of elevators
-        print("creating this many elevators: ", self.numElevators)
+        elevatorController = ElevatorController(numElevators: Int(self.numElevators)!, spacing: 90)
         
-        self.setUpElevators();
+        self.elevatorController?.setUpElevators();
         self.drawElevators();
         
         self.setUpFloorButtons()
@@ -39,31 +37,16 @@ class SimulationViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    func setUpElevators() {
-        let limit = Int(self.numElevators)!
-        
-        for i in 1...limit {
-            let elevator = Elevator(frame: CGRect(x: 25 + (self.spacing * i), y: 90, width: self.spacing, height: self.spacing))
-            self.elevators.append(elevator)
-        }
-    }
-    
-    func drawElevators() {
-        for elevator in self.elevators {
-            elevator.draw(CGRect(
-                origin: CGPoint(x: elevator.x, y: elevator.y),
-                size: CGSize(width: elevator.width, height: elevator.height)));
-            
-            // Add the view to the view hierarchy so that it shows up on screen
-            self.view.addSubview(elevator)
-        }
-    }
-    
     func setUpFloorButtons() {
         let limit = Int(self.numElevators)!
         
         for i in 1...limit {
-            let button = FloorButton(frame: CGRect(x: 20, y: 100 + (self.spacing * i), width: 30, height: 30))
+            let button = FloorButton(frame: CGRect(x: 20, y: 100 + (self.elevatorController!.spacing * i), width: 30, height: 30))
+            
+            //used to respond to touch events on floor buttons
+            let gesture = UITapGestureRecognizer(target: self, action:  #selector (floorButtonTapHandler(sender:)))
+            button.addGestureRecognizer(gesture)
+            
             self.floorButtons.append(button)
         }
     }
@@ -76,6 +59,22 @@ class SimulationViewController: UIViewController {
             
             // Add the view to the view hierarchy so that it shows up on screen
             self.view.addSubview(button)
+        }
+    }
+    
+    @objc func floorButtonTapHandler(sender : UITapGestureRecognizer) {
+        print("floor button clicked...")
+        self.elevatorController?.moveElevators()
+    }
+    
+    func drawElevators() {
+        for elevator in self.elevatorController!.elevators {
+            elevator.draw(CGRect(
+                origin: CGPoint(x: elevator.x, y: elevator.y),
+                size: CGSize(width: elevator.width, height: elevator.height)));
+            
+            // Add the view to the view hierarchy so that it shows up on screen
+            self.view.addSubview(elevator)
         }
     }
 }

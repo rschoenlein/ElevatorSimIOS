@@ -12,7 +12,6 @@ import UIKit
 class Door: UIView {
     
     //MARK: Properties
-    //MARK: Properties
     var width = 0
     var height = 0
     var x = 0
@@ -20,12 +19,11 @@ class Door: UIView {
     var closed = true
     
     //MARK: Actions
-    
-    override init(frame: CGRect) {
-        width = Int(frame.width)/2
-        height = Int(frame.height)/2
-        x = Int(frame.origin.x)
-        y = Int(frame.origin.y)
+    init(frame: CGRect, x: Int, y: Int) {
+        self.width = 20;
+        self.height = 40
+        self.x = x
+        self.y = y
         
         super.init(frame: frame)
     }
@@ -34,6 +32,7 @@ class Door: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //TODO not drawing door in correct location relative to elevator
     override func draw(_ rect: CGRect)
     {
         let color:UIColor = UIColor.white

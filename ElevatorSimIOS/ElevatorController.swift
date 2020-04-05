@@ -9,6 +9,39 @@
 import Foundation
 import UIKit
 
-class ElevatorController {
+class ElevatorController: UIViewController {
+    //MARK: Properties
+    var numElevators:Int = 0
+    var spacing:Int = 0
+    var elevators: [Elevator] = []
     
+    //MARK: Actions
+    init(numElevators: Int, spacing: Int) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.numElevators = numElevators
+        self.spacing = spacing
+        self.setUpElevators()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setUpElevators() {
+        let limit = Int(self.numElevators)
+        
+        for i in 1...limit {
+            let elevator = Elevator(frame: CGRect(x: 25 + (self.spacing * i), y: 90, width: self.spacing - 10, height: self.spacing))
+            self.elevators.append(elevator)
+        }
+    }
+    
+    func moveElevators() {
+        for elevator in self.elevators {
+            if(elevator.direction == "up") {
+                elevator.moveUp(spacing: self.spacing)
+            }
+        }
+    }
 }

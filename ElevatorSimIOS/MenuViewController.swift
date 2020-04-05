@@ -29,9 +29,6 @@ class MenuViewController: UIViewController, UITextFieldDelegate {
     
     //go to simulation view
     @IBAction func simulateButtonPressed(_ sender: Any) {
-        print("Text found: ", self.elevatorsField.text!)
-        
-        //TODO
         performSegue(withIdentifier: "toSimView", sender: self)
     }
     
