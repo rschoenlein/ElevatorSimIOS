@@ -18,7 +18,7 @@ class Elevator: UIView {
     var y = 0
     var door: Door
     var currentFloor = 1
-    var direction = "up"
+    var direction = "down"
     
     override init(frame: CGRect) {
         width = Int(frame.width)
@@ -49,20 +49,31 @@ class Elevator: UIView {
             size: CGSize(width: door.width, height: door.height)));
     }
     
-    func moveDown() {
-        UIView.animate(withDuration: 0.3) {
-            self.frame.origin.y += 50
-        }
+    func moveDown(spacing: Int) {
+        UIView.animate(withDuration: 1.0,
+                        delay: 0.0,
+                        options: [],
+                        animations: {
+                        self.frame.origin.y += CGFloat(spacing)
+        },
+                        completion: nil)
     }
     
     func moveUp(spacing: Int) {
-        //TODO entering this scope but not adjusting self.y
         UIView.animate(withDuration: 1.0,
                        delay: 0.0,
                        options: [],
                        animations: {
-                        self.frame.origin.y += CGFloat(spacing)
+                        self.frame.origin.y -= CGFloat(spacing)
         },
                        completion: nil)
+    }
+    
+    func stop() {
+        
+    }
+    
+    func status() {
+        
     }
 }

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//TODO make this adaptive
 class ElevatorController: UIViewController {
     //MARK: Properties
     var numElevators:Int = 0
@@ -37,10 +38,19 @@ class ElevatorController: UIViewController {
         }
     }
     
+    //TODO adjust this according to sequence diagram
     func moveElevators() {
         for elevator in self.elevators {
+            if(elevator.frame.origin.y > 600) {
+                elevator.direction = "up"
+            }
+            if(elevator.frame.origin.y < 100) {
+                elevator.direction = "down"
+            }
             if(elevator.direction == "up") {
                 elevator.moveUp(spacing: self.spacing)
+            }else if(elevator.direction == "down") {
+                elevator.moveDown(spacing: self.spacing)
             }
         }
     }

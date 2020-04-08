@@ -41,7 +41,7 @@ class SimulationViewController: UIViewController {
         let limit = Int(self.numElevators)!
         
         for i in 1...limit {
-            let button = FloorButton(frame: CGRect(x: 20, y: 100 + (self.elevatorController!.spacing * i), width: 30, height: 30))
+            let button = FloorButton(floor: i, frame: CGRect(x: 20, y: 100 + (self.elevatorController!.spacing * i), width: 30, height: 30))
             
             //used to respond to touch events on floor buttons
             let gesture = UITapGestureRecognizer(target: self, action:  #selector (floorButtonTapHandler(sender:)))
