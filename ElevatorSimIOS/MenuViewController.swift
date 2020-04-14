@@ -6,8 +6,7 @@
 //  Copyright © 2020 Ryan Schoenlein. All rights reserved.
 //
 
-//TODO make this adaptive
-import UIKit
+ import UIKit
 
 class MenuViewController: UIViewController, UITextFieldDelegate {
     
@@ -17,7 +16,6 @@ class MenuViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         //disable button
         self.elevatorsField.delegate = self
@@ -26,7 +24,6 @@ class MenuViewController: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: Actions
-    
     //go to simulation view
     @IBAction func simulateButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "toSimView", sender: self)

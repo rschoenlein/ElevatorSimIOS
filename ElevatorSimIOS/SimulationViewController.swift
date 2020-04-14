@@ -18,8 +18,13 @@ class SimulationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        //TODO calculate spacing based on width of screen and number of elevators
+        let bounds: CGRect = UIScreen.main.bounds
+        let width:CGFloat = bounds.size.width
+        let spacing = Int(width)/Int(self.numElevators)! - 5
         
-        elevatorController = ElevatorController(numElevators: Int(self.numElevators)!, spacing: 90)
+        self.elevatorController = ElevatorController(numElevators: Int(self.numElevators)!, spacing: spacing)
         
         self.elevatorController?.setUpElevators();
         self.drawElevators();
