@@ -45,10 +45,12 @@ class Door: UIView {
     }
     
     func open() {
-        
+        //TODO animations
+        self.closed = false
     }
     
     func close() {
-        
+        //TODO animations
+        self.closed = true
     }
 }

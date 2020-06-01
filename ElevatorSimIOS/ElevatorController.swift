@@ -16,6 +16,7 @@ class ElevatorController: UIViewController {
     var numElevators:Int = 0
     var spacing:Int = 0
     var elevators: [Elevator] = []
+    var floorRequests: [Int] = []
     
     //MARK: Actions
     init(numElevators: Int, spacing: Int) {
@@ -34,25 +35,29 @@ class ElevatorController: UIViewController {
         let limit = Int(self.numElevators)
         
         for i in 1...limit {
-            let elevator = Elevator(frame: CGRect(x: 50 + (self.spacing * i) - self.spacing/2, y: 90, width: self.spacing - 20, height: 50))
+            let elevator = Elevator(frame: CGRect(x: 50 + (self.spacing * i) - self.spacing/2, y: 90, width: self.spacing - 20, height: 50), floor: self.numElevators)
             self.elevators.append(elevator)
         }
     }
     
-    //TODO using queue, adjust this according to sequence diagram and make adaptive
     func moveElevators() {
         for elevator in self.elevators {
-            if(elevator.frame.origin.y > 600) {
-                elevator.direction = "up"
-            }
-            if(elevator.frame.origin.y < 100) {
-                elevator.direction = "down"
-            }
-            if(elevator.direction == "up") {
-                elevator.moveUp(spacing: self.spacing)
-            }else if(elevator.direction == "down") {
-                elevator.moveDown(spacing: self.spacing)
+           elevator.move()
+        }
+        
+        //TODO accept calls from floor buttons, send available elevator, change elevator status, move elevator
+        //update all elevator statuses
+    }
+    
+    func serveElevator(floor: Int) -> Elevator? {
+        for elevator in self.elevators {
+            elevator.updateDirection()
+            if(elevator.status() == "idle") {
+                print("elevator served for floor: ", elevator.destination)
+                return elevator
             }
         }
+        
+        return nil
     }
 }

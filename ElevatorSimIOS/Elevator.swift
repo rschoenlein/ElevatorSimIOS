@@ -16,25 +16,31 @@ class Elevator: UIView {
     var height = 0
     var x = 0
     var y = 0
+    var destination = 0
     var door: Door
     var currentFloor = 1
-    var direction = "down"
+    var direction = "idle"
+    var elevatorButton: ElevatorButton
     
+    //constructors
     override init(frame: CGRect) {
-        width = Int(frame.width)
-        height = Int(frame.height)
-        x = Int(frame.origin.x)
-        y = Int(frame.origin.y)
-        door = Door(frame: frame, x: x + 40, y: y + 40)
-        
-        print("Created elevator at: ", x, ", ", y)
-        print("Created door at: ", self.door.x, ", ", self.door.y)
+        self.width = Int(frame.width)
+        self.height = Int(frame.height)
+        self.x = Int(frame.origin.x)
+        self.y = Int(frame.origin.y)
+        self.door = Door(frame: frame, x: x + 40, y: y + 40)
+        self.elevatorButton = ElevatorButton(frame: frame)
         
         super.init(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(frame: CGRect, floor: Int) {
+        self.init(frame: frame)
+        self.currentFloor = floor
     }
     
     //MARK: Actions
@@ -69,11 +75,32 @@ class Elevator: UIView {
                        completion: nil)
     }
     
-    func stop() {
+    func move() {
+        if(self.direction == "down") {
+            self.moveDown(spacing: self.height)
+        }
         
+        if(self.direction == "up") {
+            self.moveUp(spacing: self.height)
+        }
+
     }
     
-    func status() {
-        
+    func stop() {
+        self.direction = "stopped"
+    }
+    
+    func status() -> String {
+        return self.direction
+    }
+    
+    func updateDirection() {
+        if(self.currentFloor > self.destination) {
+            self.direction = "down"
+        } else if (self.currentFloor < self.destination) {
+            self.direction = "up"
+        } else {
+            self.direction = "idle"
+        }
     }
 }

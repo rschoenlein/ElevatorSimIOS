@@ -17,15 +17,16 @@ class Button: UIView {
     var x = 0
     var y = 0
     var illuminated = false
+    var gesture: UITapGestureRecognizer?
     
     //MARK: Actions
     override init(frame: CGRect) {
+        super.init(frame: frame)
         width = Int(frame.width)
         height = Int(frame.height)
         x = Int(frame.origin.x)
         y = Int(frame.origin.y)
-        
-        super.init(frame: frame)
+        self.gesture = UITapGestureRecognizer(target: self, action:  #selector(self.pressed))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,15 +54,19 @@ class Button: UIView {
     }
     
     func illuminate() {
-        
+        //TODO animation
     }
     
     func cancelIlluminate() {
-        
+        //TODO stop animation
     }
     
-    func status() {
-        
+    @objc func pressed(sender : UITapGestureRecognizer) {
+        print("BUTTON TAPPED")
+    }
+    
+    func isLit() -> Bool {
+        return self.illuminated
     }
 }
 
@@ -69,8 +74,9 @@ class FloorButton: Button {
     
     //MARK: Properties
     var floorNum = 0
-    let up = true
-    
+    var status = "served"
+
+   
     //MARK: Actions
     init(floor: Int, frame: CGRect) {
         super.init(frame: frame)
@@ -98,6 +104,25 @@ class FloorButton: Button {
         let attributedString = NSAttributedString(string: myText, attributes: attributes)
 
         attributedString.draw(in: rect)
+        
+        //set tap recognizer attributes
+        self.gesture = UITapGestureRecognizer(target: self, action:  #selector(self.pressed))
+        self.addGestureRecognizer(gesture!)
+    }
+    
+    override func illuminate() {
+        super.illuminate()
+        //TODO send floor request to elevator controller
+        
+        //TODO send random floor request to elevator button(simulates person in elevator pressing button)
+    }
+    
+    
+    @objc override func pressed(sender : UITapGestureRecognizer) {
+        print("BUTTON TAPPED AT FLOOR: ", self.floorNum)
+        
+        //TODO get next available elevator from queue and move elevators
+        self.status = "waiting"
     }
 }
 
@@ -107,4 +132,9 @@ class ElevatorButton: Button {
     let floorNum = 0
     
     //MARK: Actions
+    override func illuminate() {
+        super.illuminate()
+        //TODO send floor request to elevator
+        
+    }
 }
